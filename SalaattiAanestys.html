@@ -1,0 +1,195 @@
+
+<html>
+    <head>
+    <style>
+    body{
+        margin: auto;
+        width: 100%;
+    }
+    .center{
+        text-align: center;
+        height: 100%;
+    }
+    h1 {
+      color: green;
+      font-family: verdana;
+      font-size: 200%;
+    }
+    p {
+      color: red;
+      font-family: courier;
+      font-size: 160%;
+    }
+    
+    .btn{
+        font-family: verdana;
+        background: green;
+        color: white;
+        border: none;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 20px;
+        padding-left: 40px;
+        padding-right: 40px;
+        font-size: 30px;
+        
+    }
+    .votePrompt{
+        position: absolute;
+        display: none;
+        
+        background: white;
+        opacity: 0.8;
+        
+    }
+    .voteText{
+        text-align: center;
+        font-size:250%;
+    }
+    
+    </style>
+    
+    <script>
+        var jenkkiVote = 0;
+        var jaavuoriVote = 0;
+        var totalVotes = 0;
+        var originalOpacity = .95;
+        
+        
+        function VoteJenkki()
+        {
+            jenkkiVote++;
+            totalVotes++;
+            ShowPromptAfterVoting();
+        }
+        
+        function VoteJaavuori()
+        {
+            jaavuoriVote++;
+            totalVotes++;
+            ShowPromptAfterVoting();
+        }
+        
+        
+        function ShowPromptAfterVoting()
+        {
+            var votePanel = document.getElementById('votePanel');
+
+            votePanel.style.width = window.innerWidth* .95 + "px";
+            votePanel.style.height = window.innerHeight * .95 + "px";
+	votePanel.style.left = window.innerWidth* .025 + "px";
+            votePanel.style.lineHeight = window.innerHeight * .25 + "px";
+            votePanel.style.display = "block";
+            fadeOut(votePanel);
+        }
+        
+        function fadeOut(el) {
+            
+            var opacity = originalOpacity; // Initial opacity
+            var timer = 20;
+            el.style.opacity = originalOpacity;
+            
+            //KEEP PANEL ON THE SCREEN SOMETIME
+            var waitInterval = setInterval(function(){
+                if(timer > 0){
+                    timer -=1;
+                }
+                else
+                {
+                    clearInterval(waitInterval);
+                    
+                    //FADE OUT
+                    var interval = setInterval(function() 
+                    {
+                       if (opacity > 0) {
+                          opacity -= 0.1;
+                          el.style.opacity = opacity;
+                       } 
+                       else {
+                          clearInterval(interval); // Stop the interval when opacity reaches 0
+                          el.style.display = 'none'; // Hide the element
+                       }
+                    }, 50);
+                }
+                
+            }, 100)
+            
+            
+            
+
+         }
+         
+        
+        function ShowResults()
+        {
+            var resultsPanel = document.getElementById('resultsPanel');
+            
+            resultsPanel.innerHTML = "Total votes: " + totalVotes +
+                                        "<br><b>Amerikansalaatti: </b> Lukumäärä: " + jenkkiVote + " | Osuus: " +  Math.round(jenkkiVote / totalVotes * 100) + " %" +  
+                                        "<br><b>Jäävuorisalaatti: </b> Lukumäärä: " + jaavuoriVote + " | Osuus: " + Math.round(jaavuoriVote / totalVotes * 100)  + " %";
+        }
+        
+        
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    </head>
+<body>
+    <div class="votePrompt" id="votePanel">
+        <br>
+        <div class="voteText">
+            <h1>Kiitos vastauksesta!</h1>
+            
+        </div>
+
+        <br>
+    </div>
+    
+    <div class="center">
+        <br>
+        <br>
+        <img height="130px" src="SalicoLogo.png">
+        <br>
+        <br>
+        <h1>Kumpaa nimeä käytät tästä tuotteesta?</h1>
+        <img height="400px" src="jenkki.jpg">
+    <br>
+        <button class="btn" onclick="VoteJenkki()">Amerikansalaatti</button>
+        <button class="btn" onclick="VoteJaavuori()">Jäävuorisalaatti</button>
+
+        
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div>
+        <button onclick="ShowResults()">Tulokset</button>
+        <div id="resultsPanel">
+            
+        </div>
+    </div>
+    
+    <br>
+    <br>
+</body>
+
+
+</html>
+
