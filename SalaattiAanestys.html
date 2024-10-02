@@ -12,10 +12,10 @@
     }
     h1 {
       color: green;
-      font-family: calibri;
+      font-family: verdana;
       font-weight: bold;
-      font-style: italic;
-      font-size: 300%;
+      /*font-style: italic;*/
+      font-size: 200%;
     }
     p {
       color: red;
@@ -24,8 +24,8 @@
     }
     
     .btn{
-        font-family: calibri;
-        font-weight: bold;
+        font-family: verdana;
+        /*font-weight: bold;*/
         font-style: italic;
         background: green;
         color: white;
@@ -90,7 +90,7 @@
         function fadeOut(el) {
             
             var opacity = originalOpacity; // Initial opacity
-            var timer = 20;
+            var timer = 5;
             el.style.opacity = originalOpacity;
             
             //KEEP PANEL ON THE SCREEN SOMETIME
@@ -163,8 +163,8 @@
         <h1>KUMPAA NIMEÄ KÄYTÄT TÄSTÄ SALAATISTA?</h1>
 	<img height="400px" src="jenkkileikattu.jpg">
     <br>
-        <button class="btn" onclick="VoteJenkki()">AMERIKANSALAATTI</button>
-        <button class="btn" onclick="VoteJaavuori()">JÄÄVUORISALAATTI</button>
+        <button class="btn" onclick="VoteJenkki()">Amerikansalaatti</button>
+        <button class="btn" onclick="VoteJaavuori()">Jäävuorisalaatti</button>
 
         
     </div>
